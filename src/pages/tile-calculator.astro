@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TileCalculator from '../components/TileCalculator.astro';
+---
+
+<BaseLayout 
+  title="Tile Calculator — How Many Tiles Do You Need? | HomeDIYCalcs"
+  description="Free tile calculator. Calculate how many tiles you need for floors, walls, or backsplashes. Includes waste factor and unit conversion."
+>
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="mb-12 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl text-ink mb-4">
+        Tile Calculator
+      </h1>
+      <p class="text-lg text-ink-muted max-w-2xl mx-auto">
+        Calculate exactly how many tiles you need for your floor, wall, or backsplash project. Free and accurate.
+      </p>
+    </div>
+
+    <TileCalculator />
+
+    <div class="mt-16 max-w-2xl mx-auto prose">
+      <h2 class="font-serif text-2xl text-ink mb-4">How to use this calculator</h2>
+      <ol class="list-decimal list-inside text-ink space-y-2">
+        <li>Measure the length and width of your area in feet (or meters).</li>
+        <li>Choose the tile size you plan to use.</li>
+        <li>Set your waste factor (10% is standard for straight layouts).</li>
+        <li>The calculator instantly tells you how many tiles to buy.</li>
+      </ol>
+
+      <h2 class="font-serif text-2xl text-ink mt-8 mb-4">Why include waste?</h2>
+      <p class="text-ink-muted">
+        Tiles get cut, broken, or have small defects. Most pros recommend buying 10% extra for simple layouts and 15% for diagonal or complex patterns. Better to have extra than to run short mid-project.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="HomeDIYCalcs — Free DIY Home Improvement Calculators">
+  <!-- Hero Section -->
   <section class="max-w-6xl mx-auto px-6 py-20">
     <h1 class="font-serif text-5xl md:text-6xl text-ink leading-tight mb-6">
       DIY home improvement calculators that just work.
@@ -10,14 +11,81 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p class="text-lg text-ink-muted max-w-2xl mb-10">
       Free, no-signup tools for figuring out how much paint, tile, mulch, or concrete you actually need. Built for homeowners who want a clear answer in seconds.
     </p>
-    <a 
-  href="/calculators" 
-  class="inline-block text-white px-6 py-3 rounded-lg transition-colors font-medium"
-  style="background-color: var(--color-accent);"
-  onmouseover="this.style.backgroundColor='var(--color-accent-ink)'"
-  onmouseout="this.style.backgroundColor='var(--color-accent)'"
->
-  Browse calculators
-</a>
+  </section>
+
+  <!-- Calculators Grid -->
+  <section class="max-w-6xl mx-auto px-6 pb-20">
+    <h2 class="font-serif text-3xl text-ink mb-8">Available calculators</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Tile Calculator -->
+      <a 
+        href="/tile-calculator"
+        class="block bg-white rounded-xl border border-line p-6 hover:border-line-strong transition-colors"
+      >
+        <h3 class="font-serif text-2xl text-ink mb-2">Tile Calculator</h3>
+        <p class="text-sm text-ink-muted">
+          How many tiles do you need for your floor, wall, or backsplash project?
+        </p>
+        <p class="text-sm mt-4" style="color: var(--color-accent);">
+          Open calculator →
+        </p>
+      </a>
+
+      <!-- Coming Soon: Paint -->
+      <div class="block bg-white rounded-xl border border-line p-6 opacity-60">
+        <h3 class="font-serif text-2xl text-ink mb-2">Paint Calculator</h3>
+        <p class="text-sm text-ink-muted">
+          Calculate exactly how much paint you need for your room or surface.
+        </p>
+        <p class="text-sm mt-4 text-ink-muted">
+          Coming soon
+        </p>
+      </div>
+
+      <!-- Coming Soon: Mulch -->
+      <div class="block bg-white rounded-xl border border-line p-6 opacity-60">
+        <h3 class="font-serif text-2xl text-ink mb-2">Mulch Calculator</h3>
+        <p class="text-sm text-ink-muted">
+          How much mulch in cubic yards for your garden or landscaping?
+        </p>
+        <p class="text-sm mt-4 text-ink-muted">
+          Coming soon
+        </p>
+      </div>
+
+      <!-- Coming Soon: Concrete -->
+      <div class="block bg-white rounded-xl border border-line p-6 opacity-60">
+        <h3 class="font-serif text-2xl text-ink mb-2">Concrete Calculator</h3>
+        <p class="text-sm text-ink-muted">
+          Calculate cubic yards or bags of concrete for your slab or footing.
+        </p>
+        <p class="text-sm mt-4 text-ink-muted">
+          Coming soon
+        </p>
+      </div>
+
+      <!-- Coming Soon: Fence -->
+      <div class="block bg-white rounded-xl border border-line p-6 opacity-60">
+        <h3 class="font-serif text-2xl text-ink mb-2">Fence Calculator</h3>
+        <p class="text-sm text-ink-muted">
+          Estimate posts, panels, and materials for your fence project.
+        </p>
+        <p class="text-sm mt-4 text-ink-muted">
+          Coming soon
+        </p>
+      </div>
+
+      <!-- Coming Soon: Gravel -->
+      <div class="block bg-white rounded-xl border border-line p-6 opacity-60">
+        <h3 class="font-serif text-2xl text-ink mb-2">Gravel Calculator</h3>
+        <p class="text-sm text-ink-muted">
+          Cubic yards of gravel needed for driveways, paths, or drainage.
+        </p>
+        <p class="text-sm mt-4 text-ink-muted">
+          Coming soon
+        </p>
+      </div>
+    </div>
   </section>
 </BaseLayout>

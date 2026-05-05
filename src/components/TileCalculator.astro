@@ -1,0 +1,211 @@
+---
+// Komponente nimmt optionale Defaults (für Long-Tail-Pages später)
+interface Props {
+  defaultLength?: number;
+  defaultWidth?: number;
+  defaultTileSize?: string;
+}
+
+const {
+  defaultLength = 10,
+  defaultWidth = 10,
+  defaultTileSize = "12x12",
+} = Astro.props;
+---
+
+<div class="bg-white rounded-2xl border border-line p-8 max-w-2xl mx-auto shadow-sm">
+  <h2 class="font-serif text-3xl text-ink mb-2">Tile Calculator</h2>
+  <p class="text-ink-muted mb-8">
+    Find out how many tiles you need for your project, including waste.
+  </p>
+
+  <div class="space-y-6">
+    <!-- Unit Toggle -->
+    <div class="flex items-center gap-2">
+      <span class="text-sm text-ink-muted">Units:</span>
+      <button
+        id="unit-imperial"
+        class="px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink"
+        data-unit="imperial"
+      >
+        Feet
+      </button>
+      <button
+        id="unit-metric"
+        class="px-3 py-1 text-sm rounded-md border border-line text-ink-muted"
+        data-unit="metric"
+      >
+        Meters
+      </button>
+    </div>
+
+    <!-- Length & Width -->
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="length" class="block text-sm font-medium text-ink mb-2">
+          Length (<span class="unit-label">ft</span>)
+        </label>
+        <input
+          type="number"
+          id="length"
+          value={defaultLength}
+          min="0"
+          step="0.1"
+          class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink"
+        />
+      </div>
+      <div>
+        <label for="width" class="block text-sm font-medium text-ink mb-2">
+          Width (<span class="unit-label">ft</span>)
+        </label>
+        <input
+          type="number"
+          id="width"
+          value={defaultWidth}
+          min="0"
+          step="0.1"
+          class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink"
+        />
+      </div>
+    </div>
+
+    <!-- Tile Size -->
+    <div>
+      <label for="tile-size" class="block text-sm font-medium text-ink mb-2">
+        Tile size (inches)
+      </label>
+      <select
+        id="tile-size"
+        class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink bg-white"
+      >
+        <option value="4x4">4 × 4 inch</option>
+        <option value="6x6">6 × 6 inch</option>
+        <option value="8x8">8 × 8 inch</option>
+        <option value="12x12" selected>12 × 12 inch</option>
+        <option value="12x24">12 × 24 inch</option>
+        <option value="18x18">18 × 18 inch</option>
+        <option value="24x24">24 × 24 inch</option>
+      </select>
+    </div>
+
+    <!-- Waste Factor -->
+    <div>
+      <label for="waste" class="block text-sm font-medium text-ink mb-2">
+        Waste factor (%)
+      </label>
+      <input
+        type="number"
+        id="waste"
+        value="10"
+        min="0"
+        max="50"
+        class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink"
+      />
+      <p class="text-xs text-ink-muted mt-1">
+        Standard is 10%. Use 15% for diagonal patterns or complex layouts.
+      </p>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="mt-8 pt-8 border-t border-line">
+    <div class="bg-accent-soft rounded-xl p-6">
+      <p class="text-sm text-ink-muted mb-2">You'll need</p>
+      <p class="font-serif text-5xl text-ink mb-1">
+        <span id="result-tiles">0</span>
+        <span class="text-2xl text-ink-muted">tiles</span>
+      </p>
+      <p class="text-sm text-ink-muted" id="result-details">
+        Enter dimensions to calculate
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Werte holen
+  const lengthInput = document.getElementById('length') as HTMLInputElement;
+  const widthInput = document.getElementById('width') as HTMLInputElement;
+  const tileSizeSelect = document.getElementById('tile-size') as HTMLSelectElement;
+  const wasteInput = document.getElementById('waste') as HTMLInputElement;
+  const resultTiles = document.getElementById('result-tiles');
+  const resultDetails = document.getElementById('result-details');
+  const unitImperial = document.getElementById('unit-imperial');
+  const unitMetric = document.getElementById('unit-metric');
+  const unitLabels = document.querySelectorAll('.unit-label');
+
+  let currentUnit: 'imperial' | 'metric' = 'imperial';
+
+  function calculate() {
+    const length = parseFloat(lengthInput.value) || 0;
+    const width = parseFloat(widthInput.value) || 0;
+    const wastePercent = parseFloat(wasteInput.value) || 0;
+    const tileSize = tileSizeSelect.value;
+
+    // Tile-Grösse in Inches → in Quadrat-Inches
+    const [tileLengthIn, tileWidthIn] = tileSize.split('x').map(Number);
+    const tileAreaSqIn = tileLengthIn * tileWidthIn;
+
+    let totalAreaSqFt = 0;
+    let totalAreaSqM = 0;
+
+    if (currentUnit === 'imperial') {
+      // Length & Width sind in Feet
+      totalAreaSqFt = length * width;
+      totalAreaSqM = totalAreaSqFt * 0.092903;
+    } else {
+      // Length & Width sind in Metern
+      totalAreaSqM = length * width;
+      totalAreaSqFt = totalAreaSqM * 10.7639;
+    }
+
+    // Eine Fliese in sqft
+    const tileAreaSqFt = tileAreaSqIn / 144;
+
+    // Anzahl Fliesen
+    const baseTiles = totalAreaSqFt / tileAreaSqFt;
+    const tilesWithWaste = Math.ceil(baseTiles * (1 + wastePercent / 100));
+
+    // Ausgabe
+    if (length > 0 && width > 0) {
+      resultTiles!.textContent = tilesWithWaste.toString();
+      resultDetails!.textContent =
+        `${totalAreaSqFt.toFixed(1)} sq ft (${totalAreaSqM.toFixed(1)} sq m) · ` +
+        `${Math.ceil(baseTiles)} tiles + ${wastePercent}% waste`;
+    } else {
+      resultTiles!.textContent = '0';
+      resultDetails!.textContent = 'Enter dimensions to calculate';
+    }
+  }
+
+  // Unit-Toggle
+  function setUnit(unit: 'imperial' | 'metric') {
+    currentUnit = unit;
+    const isImperial = unit === 'imperial';
+
+    unitImperial!.className = isImperial
+      ? 'px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink'
+      : 'px-3 py-1 text-sm rounded-md border border-line text-ink-muted';
+    unitMetric!.className = !isImperial
+      ? 'px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink'
+      : 'px-3 py-1 text-sm rounded-md border border-line text-ink-muted';
+
+    unitLabels.forEach((label) => {
+      label.textContent = isImperial ? 'ft' : 'm';
+    });
+
+    calculate();
+  }
+
+  unitImperial?.addEventListener('click', () => setUnit('imperial'));
+  unitMetric?.addEventListener('click', () => setUnit('metric'));
+
+  // Listen für Eingaben
+  [lengthInput, widthInput, tileSizeSelect, wasteInput].forEach((el) => {
+    el?.addEventListener('input', calculate);
+    el?.addEventListener('change', calculate);
+  });
+
+  // Initial berechnen
+  calculate();
+</script>
