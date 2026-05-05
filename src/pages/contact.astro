@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Contact & Imprint — HomeDIYCalcs"
+  description="Contact information and legal imprint for HomeDIYCalcs."
+>
+  <section class="max-w-3xl mx-auto px-6 py-16">
+    <h1 class="font-serif text-4xl md:text-5xl text-ink mb-8">
+      Contact & Imprint
+    </h1>
+
+    <div class="space-y-10 text-ink leading-relaxed">
+      
+      <div>
+        <h2 class="font-serif text-2xl text-ink mb-4">Get in touch</h2>
+        <p>
+          Found a bug, have a feature request, or just want to say hello?
+        </p>
+        <p class="mt-4">
+          Email: <a href="mailto:info@homediycalcs.com" style="color: var(--color-accent);" class="hover:underline">info@homediycalcs.com</a>
+        </p>
+        <p class="text-sm text-ink-muted mt-2">
+          I usually respond within a few days.
+        </p>
+      </div>
+
+      <div class="border-t border-line pt-10">
+        <h2 class="font-serif text-2xl text-ink mb-4">Imprint</h2>
+        <p class="text-sm text-ink-muted mb-4">
+          Information according to Swiss law (UWG Art. 3 Abs. 1 lit. s).
+        </p>
+        
+        <div class="bg-white rounded-xl border border-line p-6 space-y-1">
+          <p class="font-medium">Marlin Tanner</p>
+          <p>Steinmüsitrasse 2</p>
+          <p>8330 Pfäffikon ZH</p>
+          <p>Switzerland</p>
+          <p class="mt-4">
+            Email: <a href="mailto:info@homediycalcs.com" style="color: var(--color-accent);" class="hover:underline">info@homediycalcs.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="border-t border-line pt-10">
+        <h2 class="font-serif text-2xl text-ink mb-4">Disclaimer</h2>
+        <p>
+          The calculators on this site provide estimates based on standard formulas and waste factors. Always verify measurements and consult a qualified contractor for projects requiring precise material calculations. HomeDIYCalcs is not liable for material shortages, overages, or installation errors based on calculator results.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
