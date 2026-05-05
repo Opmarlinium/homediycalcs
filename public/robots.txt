@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://homediycalcs.com/sitemap-index.xml
