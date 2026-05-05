@@ -10,8 +10,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p class="text-lg text-ink-muted max-w-2xl mb-10">
       Free, no-signup tools for figuring out how much paint, tile, mulch, or concrete you actually need. Built for homeowners who want a clear answer in seconds.
     </p>
-    <a href="/calculators" class="inline-block bg-accent text-white px-6 py-3 rounded-lg hover:bg-accent-ink transition-colors font-medium">
-      Browse calculators
-    </a>
+    <a 
+  href="/calculators" 
+  class="inline-block text-white px-6 py-3 rounded-lg transition-colors font-medium"
+  style="background-color: var(--color-accent);"
+  onmouseover="this.style.backgroundColor='var(--color-accent-ink)'"
+  onmouseout="this.style.backgroundColor='var(--color-accent)'"
+>
+  Browse calculators
+</a>
   </section>
 </BaseLayout>
