@@ -74,18 +74,18 @@ const {
       <label for="tile-size" class="block text-sm font-medium text-ink mb-2">
         Tile size (inches)
       </label>
-      <select
-        id="tile-size"
-        class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink bg-white"
-      >
-        <option value="4x4">4 × 4 inch</option>
-        <option value="6x6">6 × 6 inch</option>
-        <option value="8x8">8 × 8 inch</option>
-        <option value="12x12" selected>12 × 12 inch</option>
-        <option value="12x24">12 × 24 inch</option>
-        <option value="18x18">18 × 18 inch</option>
-        <option value="24x24">24 × 24 inch</option>
-      </select>
+        <select
+          id="tile-size"
+          class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink bg-white"
+        >
+        <option value="4x4" selected={defaultTileSize === "4x4"}>4 × 4 inch</option>
+        <option value="6x6" selected={defaultTileSize === "6x6"}>6 × 6 inch</option>
+        <option value="8x8" selected={defaultTileSize === "8x8"}>8 × 8 inch</option>
+        <option value="12x12" selected={defaultTileSize === "12x12"}>12 × 12 inch</option>
+        <option value="12x24" selected={defaultTileSize === "12x24"}>12 × 24 inch</option>
+        <option value="18x18" selected={defaultTileSize === "18x18"}>18 × 18 inch</option>
+        <option value="24x24" selected={defaultTileSize === "24x24"}>24 × 24 inch</option>
+        </select>
     </div>
 
     <!-- Waste Factor -->

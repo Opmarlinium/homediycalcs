@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TileCalculator from '../../components/TileCalculator.astro';
+---
+
+<BaseLayout 
+  title="Tile Calculator for Bathroom Floor — How Many Tiles? | HomeDIYCalcs"
+  description="Calculate how many tiles you need for your bathroom floor. Free, includes waste factor and works with any tile size."
+>
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="mb-12 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl text-ink mb-4">
+        Tile Calculator for Bathroom Floors
+      </h1>
+      <p class="text-lg text-ink-muted max-w-2xl mx-auto">
+        Most bathrooms are between 35–80 square feet. Enter your measurements below to get an exact tile count, including waste.
+      </p>
+    </div>
+
+    <TileCalculator defaultLength={6} defaultWidth={8} defaultTileSize="12x12" />
+
+    <div class="mt-16 max-w-2xl mx-auto">
+      <h2 class="font-serif text-2xl text-ink mb-4">Tips for tiling a bathroom floor</h2>
+      <ul class="list-disc list-inside text-ink space-y-2 mb-8">
+        <li>Measure the actual floor area, not the room size — subtract for vanity, toilet base, and bathtub footprints.</li>
+        <li>Round up to the nearest tile box. Tiles are sold in boxes, not individually.</li>
+        <li>Use 15% waste factor if you're cutting around fixtures or doing a diagonal pattern.</li>
+        <li>Buy from the same lot — different production batches can have slight color variations.</li>
+      </ul>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">Common bathroom floor sizes</h2>
+      <p class="text-ink-muted mb-4">
+        Here's what to expect for typical bathroom dimensions:
+      </p>
+      <ul class="list-disc list-inside text-ink-muted space-y-1 mb-8">
+        <li>Half bathroom: about 20 sq ft</li>
+        <li>Standard bathroom: 40–60 sq ft</li>
+        <li>Master bathroom: 80–120 sq ft</li>
+      </ul>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">Frequently asked questions</h2>
+      
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-medium text-ink mb-2">How many 12x12 tiles for a 6x8 bathroom?</h3>
+          <p class="text-ink-muted">A 6x8 bathroom is 48 square feet. With 12x12 tiles (1 sq ft each) and 10% waste, you'll need about 53 tiles.</p>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-ink mb-2">What size tile is best for a bathroom floor?</h3>
+          <p class="text-ink-muted">12x12 inch tiles are the most common for bathroom floors. They're easier to install than larger tiles and more forgiving with uneven floors. For small bathrooms, smaller tiles (6x6) can make the room feel larger.</p>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-ink mb-2">Should I use a higher waste factor for bathroom floors?</h3>
+          <p class="text-ink-muted">Yes — bathroom floors usually require more cuts around fixtures (toilet flange, vanity base, tub edge). Plan for 15% waste rather than the standard 10%.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
