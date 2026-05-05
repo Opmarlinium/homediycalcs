@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+
+:root {
+  --color-bg: #FAFAF7;
+  --color-surface: #FFFFFF;
+  --color-ink: #1C1A17;
+  --color-ink-muted: #6B6762;
+  --color-line: #E8E4DC;
+  --color-line-strong: #D6D1C6;
+  --color-accent: #B8593B;
+  --color-accent-ink: #7A3A26;
+  --color-accent-soft: #F3E4DC;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', ui-serif, serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
