@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TileCalculator from '../../components/TileCalculator.astro';
+---
+
+<BaseLayout 
+  title="How to Measure and Buy Tile: The Complete Guide | HomeDIYCalcs"
+  description="A complete guide to measuring your space, calculating tile quantity, choosing the right size, and buying the correct amount including waste. Everything you need before you order."
+>
+  <section class="max-w-3xl mx-auto px-6 py-16">
+    <div class="mb-10">
+      <p class="text-sm text-ink-muted mb-3">Complete Guide</p>
+      <h1 class="font-serif text-4xl md:text-5xl text-ink mb-4 leading-tight">
+        How to Measure and Buy Tile
+      </h1>
+      <p class="text-lg text-ink-muted">
+        Buying tile sounds simple until you're standing in the store wondering how many boxes to grab. This guide walks you through measuring your space, calculating quantity, choosing a size, and ordering the right amount — so you don't run short or massively overbuy.
+      </p>
+    </div>
+
+    <nav class="bg-white rounded-xl border border-line p-6 mb-12">
+      <p class="font-medium text-ink mb-3">In this guide</p>
+      <ul class="space-y-2 text-ink-muted">
+        <li><a href="#measure" style="color: var(--color-accent);" class="hover:underline">1. How to measure your space</a></li>
+        <li><a href="#calculate" style="color: var(--color-accent);" class="hover:underline">2. Calculating how many tiles you need</a></li>
+        <li><a href="#waste" style="color: var(--color-accent);" class="hover:underline">3. Why waste factor matters</a></li>
+        <li><a href="#size" style="color: var(--color-accent);" class="hover:underline">4. Choosing the right tile size</a></li>
+        <li><a href="#buying" style="color: var(--color-accent);" class="hover:underline">5. Buying tips and common mistakes</a></li>
+      </ul>
+    </nav>
+
+    <div class="space-y-12 text-ink leading-relaxed">
+
+      <div id="measure">
+        <h2 class="font-serif text-3xl text-ink mb-4">1. How to measure your space</h2>
+        <p class="mb-4">
+          Every tile calculation starts with accurate measurements. The goal is to find the total area you want to cover, in square feet or square meters.
+        </p>
+        <p class="mb-4"><strong>For a simple rectangular room:</strong></p>
+        <ul class="list-disc list-inside space-y-2 mb-4 text-ink-muted">
+          <li>Measure the length of the room in feet.</li>
+          <li>Measure the width in feet.</li>
+          <li>Multiply length × width to get square feet.</li>
+        </ul>
+        <p class="mb-4">
+          A 10 ft × 12 ft room is 120 square feet. That's your base area before any adjustments.
+        </p>
+        <p class="mb-4"><strong>For irregular shapes:</strong> Break the room into rectangles. Measure each section separately, calculate the square footage of each, then add them together. An L-shaped room is just two rectangles.
+        </p>
+        <p>
+          <strong>For walls and backsplashes:</strong> The method is the same — measure height × width. For a backsplash, the "height" is usually 18 inches (1.5 feet) and the "width" is the length of your countertop.
+        </p>
+      </div>
+
+      <div id="calculate">
+        <h2 class="font-serif text-3xl text-ink mb-4">2. Calculating how many tiles you need</h2>
+        <p class="mb-4">
+          Once you know your area, you divide it by the coverage of a single tile. Tile sizes are given in inches, so first convert to square feet.
+        </p>
+        <p class="mb-4">
+          A 12×12 inch tile covers exactly 1 square foot. A 12×24 inch tile covers 2 square feet. A 6×6 inch tile covers a quarter of a square foot, so you need 4 of them per square foot.
+        </p>
+        <p class="mb-4">
+          The formula: <strong>Total area ÷ coverage per tile = number of tiles.</strong> For 120 square feet with 12×12 tiles, that's 120 tiles before waste.
+        </p>
+        <p class="mb-6">
+          Rather than doing this by hand, the calculator below handles the math for any tile size and area:
+        </p>
+
+        <TileCalculator />
+      </div>
+
+      <div id="waste">
+        <h2 class="font-serif text-3xl text-ink mb-4">3. Why waste factor matters</h2>
+        <p class="mb-4">
+          You never buy the exact number of tiles your area requires. Here's why:
+        </p>
+        <ul class="list-disc list-inside space-y-2 mb-4 text-ink-muted">
+          <li><strong>Cuts:</strong> Tiles at the edges of the room get cut to fit, and the offcuts usually can't be reused.</li>
+          <li><strong>Breakage:</strong> Some tiles crack during cutting or handling.</li>
+          <li><strong>Defects:</strong> Occasionally a tile has a flaw and gets discarded.</li>
+          <li><strong>Future repairs:</strong> Keeping spares means you can replace a damaged tile years later with a perfect match.</li>
+        </ul>
+        <p class="mb-4">
+          <strong>The standard waste factor is 10%</strong> for simple, straight layouts. Bump it to <strong>15%</strong> for diagonal patterns, herringbone, or large-format tiles that break more easily. For complex mosaic work, some installers go to 20%.
+        </p>
+        <p>
+          So for 120 square feet of 12×12 tiles: 120 tiles + 10% = 132 tiles. Always round up to full boxes.
+        </p>
+      </div>
+
+      <div id="size">
+        <h2 class="font-serif text-3xl text-ink mb-4">4. Choosing the right tile size</h2>
+        <p class="mb-4">
+          Tile size affects both the look of the room and how hard the installation is.
+        </p>
+        <div class="overflow-x-auto mb-4">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-line-strong">
+                <th class="py-2 pr-4 text-ink font-medium">Size</th>
+                <th class="py-2 text-ink font-medium">Best for</th>
+              </tr>
+            </thead>
+            <tbody class="text-ink-muted">
+              <tr class="border-b border-line"><td class="py-2 pr-4">Small (2–4 inch)</td><td class="py-2">Mosaics, shower floors, detail work</td></tr>
+              <tr class="border-b border-line"><td class="py-2 pr-4">Medium (6–12 inch)</td><td class="py-2">Bathroom floors, walls, all-purpose</td></tr>
+              <tr class="border-b border-line"><td class="py-2 pr-4">Large (12–24 inch)</td><td class="py-2">Living areas, modern kitchens</td></tr>
+              <tr><td class="py-2 pr-4">Extra large (24 inch+)</td><td class="py-2">Open-plan floors, minimal grout look</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-4">
+          <strong>General rule:</strong> Larger tiles make a space feel bigger and more open because there are fewer grout lines. But they need a very flat subfloor and are harder to cut. Smaller tiles are more forgiving and grip better underfoot, which is why they're used on shower floors.
+        </p>
+        <p>
+          For a small bathroom, large tiles can actually make it feel more spacious — the opposite of what most people assume.
+        </p>
+      </div>
+
+      <div id="buying">
+        <h2 class="font-serif text-3xl text-ink mb-4">5. Buying tips and common mistakes</h2>
+        <p class="mb-4">Once you know your number, keep these in mind at the store:</p>
+        <ul class="list-disc list-inside space-y-2 mb-4 text-ink-muted">
+          <li><strong>Buy from the same lot.</strong> Tiles are produced in batches, and color can vary slightly between them. Check that all your boxes share the same lot or batch number.</li>
+          <li><strong>Tiles are sold by the box, not individually.</strong> Each box covers a set number of square feet — divide your total by the box coverage to know how many boxes.</li>
+          <li><strong>Buy one extra box.</strong> Beyond your waste calculation, an extra box stored away saves you if you damage tiles later. Reordering the same color years later is often impossible.</li>
+          <li><strong>Don't forget adhesive and grout.</strong> The tile is only part of the cost. Check coverage on thinset and grout bags for your square footage.</li>
+          <li><strong>Keep the receipt and lot number.</strong> Some stores let you return unopened boxes.</li>
+        </ul>
+        <p>
+          The most common mistake is underbuying. Running short mid-project and finding the store is out of your lot — or has discontinued it — means a visible mismatch. It's always cheaper to return an extra box than to redo a floor.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-line">
+      <h2 class="font-serif text-2xl text-ink mb-4">Tile calculators by project</h2>
+      <p class="text-ink-muted mb-4">Jump straight to a calculator for your specific project:</p>
+      <ul class="space-y-2">
+        <li><a href="/how-many-tiles-do-i-need" style="color: var(--color-accent);" class="hover:underline">How many tiles do I need? (with charts)</a></li>
+        <li><a href="/tile-calculator/bathroom-floor" style="color: var(--color-accent);" class="hover:underline">Bathroom floor tile calculator</a></li>
+        <li><a href="/tile-calculator/kitchen-backsplash" style="color: var(--color-accent);" class="hover:underline">Kitchen backsplash tile calculator</a></li>
+        <li><a href="/tile-calculator/12x24-tiles" style="color: var(--color-accent);" class="hover:underline">12×24 large format tile calculator</a></li>
+        <li><a href="/tile-calculator" style="color: var(--color-accent);" class="hover:underline">Main tile calculator</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
