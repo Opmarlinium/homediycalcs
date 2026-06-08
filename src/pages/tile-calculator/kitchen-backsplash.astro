@@ -4,16 +4,16 @@ import TileCalculator from '../../components/TileCalculator.astro';
 ---
 
 <BaseLayout 
-  title="Tile Calculator for Kitchen Backsplash | HomeDIYCalcs"
-  description="Calculate exactly how many tiles you need for your kitchen backsplash. Free, accurate, and includes standard waste factor."
+  title="Kitchen Backsplash Tile Calculator & Size Guide | HomeDIYCalcs"
+  description="Calculate how many tiles you need for your kitchen backsplash. Free calculator plus a guide to standard backsplash tile sizes and heights."
 >
   <section class="max-w-6xl mx-auto px-6 py-16">
     <div class="mb-12 text-center">
       <h1 class="font-serif text-4xl md:text-5xl text-ink mb-4">
-        Tile Calculator for Kitchen Backsplashes
+        Kitchen Backsplash Tile Calculator
       </h1>
       <p class="text-lg text-ink-muted max-w-2xl mx-auto">
-        Backsplashes are typically 18 inches tall and run the length of your countertop. Enter your dimensions for an exact tile count.
+        Backsplashes are typically 18 inches tall and run the length of your countertop. Enter your dimensions for an exact tile count, or check the size guide below.
       </p>
     </div>
 
@@ -28,33 +28,97 @@ import TileCalculator from '../../components/TileCalculator.astro';
         <li>Add 15% waste for mosaic or pattern tiles, 10% for standard subway tiles.</li>
       </ul>
 
+      <h2 class="font-serif text-2xl text-ink mb-4">Standard kitchen backsplash tile sizes</h2>
+      <p class="text-ink-muted mb-4">
+        Backsplash tiles come in a wide range of sizes. These are the most common, and what each is best suited for:
+      </p>
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-line-strong">
+              <th class="py-2 pr-4 text-ink font-medium">Tile size</th>
+              <th class="py-2 pr-4 text-ink font-medium">Type</th>
+              <th class="py-2 text-ink font-medium">Best for</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-muted">
+            <tr class="border-b border-line"><td class="py-2 pr-4">3 × 6 inch</td><td class="py-2 pr-4">Subway</td><td class="py-2">Classic, most popular</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">4 × 4 inch</td><td class="py-2 pr-4">Square</td><td class="py-2">Traditional, budget-friendly</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">2 × 2 inch</td><td class="py-2 pr-4">Mosaic</td><td class="py-2">Accents, detailed patterns</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">6 × 6 inch</td><td class="py-2 pr-4">Square</td><td class="py-2">Larger, fewer grout lines</td></tr>
+            <tr><td class="py-2 pr-4">12 × 24 inch</td><td class="py-2 pr-4">Large format</td><td class="py-2">Modern, minimal grout</td></tr>
+          </tbody>
+        </table>
+      </div>
+
       <h2 class="font-serif text-2xl text-ink mb-4">Standard backsplash heights</h2>
       <p class="text-ink-muted mb-4">
         Most kitchen backsplashes follow these standards:
       </p>
       <ul class="list-disc list-inside text-ink-muted space-y-1 mb-8">
         <li>Standard: 18 inches (1.5 ft) — fills the gap between counter and upper cabinets</li>
-        <li>Full height: extends to ceiling — popular for modern kitchens</li>
-        <li>Behind stove only: 30 inches tall, width of stove</li>
+        <li>Full height: extends to the ceiling — popular for modern kitchens</li>
+        <li>Behind stove only: 30 inches tall, width of the stove</li>
       </ul>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">Tiles needed for common backsplash sizes</h2>
+      <p class="text-ink-muted mb-4">
+        Using 3×6 inch subway tiles (8 per sq ft) with 10% waste, at standard 18-inch height:
+      </p>
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-line-strong">
+              <th class="py-2 pr-4 text-ink font-medium">Countertop length</th>
+              <th class="py-2 pr-4 text-ink font-medium">Area</th>
+              <th class="py-2 text-ink font-medium">Subway tiles</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-muted">
+            <tr class="border-b border-line"><td class="py-2 pr-4">6 ft</td><td class="py-2 pr-4">9 sq ft</td><td class="py-2">~80 tiles</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">8 ft</td><td class="py-2 pr-4">12 sq ft</td><td class="py-2">~106 tiles</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">10 ft</td><td class="py-2 pr-4">15 sq ft</td><td class="py-2">~132 tiles</td></tr>
+            <tr><td class="py-2 pr-4">12 ft</td><td class="py-2 pr-4">18 sq ft</td><td class="py-2">~159 tiles</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <h2 class="font-serif text-2xl text-ink mb-4">Frequently asked questions</h2>
       
       <div class="space-y-6">
         <div>
-          <h3 class="font-medium text-ink mb-2">How many subway tiles for a 10-foot backsplash?</h3>
-          <p class="text-ink-muted">A 10-foot wide, 18-inch tall backsplash is 15 sq ft. With 4x4 tiles (9 per sq ft) and 10% waste, you'll need about 149 tiles.</p>
+          <h3 class="font-medium text-ink mb-2">What is the most popular backsplash tile size?</h3>
+          <p class="text-ink-muted">The 3×6 inch subway tile is the most popular by far. It's affordable, timeless, and works in nearly any kitchen style. The 4×4 inch square tile is a close second for a more traditional look.</p>
         </div>
 
         <div>
-          <h3 class="font-medium text-ink mb-2">What's the most popular backsplash tile size?</h3>
-          <p class="text-ink-muted">Subway tiles (3x6 or 4x4 inch) are the most common. They're affordable, classic, and easy to install. Larger 12x12 or 12x24 tiles are popular for modern kitchens.</p>
+          <h3 class="font-medium text-ink mb-2">How many subway tiles for a 10-foot backsplash?</h3>
+          <p class="text-ink-muted">A 10-foot wide, 18-inch tall backsplash is 15 sq ft. With 3×6 subway tiles (8 per sq ft) and 10% waste, you'll need about 132 tiles.</p>
         </div>
 
         <div>
           <h3 class="font-medium text-ink mb-2">Should I include outlets and switches in my measurement?</h3>
           <p class="text-ink-muted">No — but don't subtract them either. Outlet boxes are small enough that the cut tiles often work out to similar coverage. Just stick with your linear measurements.</p>
         </div>
+
+        <div>
+          <h3 class="font-medium text-ink mb-2">What size tile makes a small kitchen look bigger?</h3>
+          <p class="text-ink-muted">Larger tiles with fewer grout lines (like 12×24 inch) make a space feel more open. For a small kitchen, large-format tiles or a continuous subway pattern create a clean, uncluttered look.</p>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-ink mb-2">How much extra tile should I buy for a backsplash?</h3>
+          <p class="text-ink-muted">Add 10% for standard subway layouts and 15% for mosaic, herringbone, or diagonal patterns, which require more cuts. Keep a few spare tiles after the job for future repairs.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-line">
+        <h2 class="font-serif text-2xl text-ink mb-4">Related calculators</h2>
+        <ul class="space-y-2">
+          <li><a href="/how-many-tiles-do-i-need" style="color: var(--color-accent);" class="hover:underline">How many tiles do I need? (full guide)</a></li>
+          <li><a href="/tile-calculator/bathroom-floor" style="color: var(--color-accent);" class="hover:underline">Tile calculator for bathroom floors</a></li>
+          <li><a href="/tile-calculator" style="color: var(--color-accent);" class="hover:underline">Main tile calculator</a></li>
+        </ul>
       </div>
     </div>
   </section>
