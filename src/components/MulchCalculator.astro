@@ -1,0 +1,118 @@
+---
+// Mulch Calculator — Fläche × Tiefe → Volumen in cubic yards (+ Bags)
+---
+
+<div class="bg-white rounded-2xl border border-line p-8 max-w-2xl mx-auto shadow-sm">
+  <h2 class="font-serif text-3xl text-ink mb-2">Mulch Calculator</h2>
+  <p class="text-ink-muted mb-8">
+    Find out how many cubic yards or bags of mulch you need for your beds.
+  </p>
+
+  <div class="space-y-6">
+    <div class="flex items-center gap-2">
+      <span class="text-sm text-ink-muted">Units:</span>
+      <button id="munit-imperial" class="px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink" data-unit="imperial">Feet</button>
+      <button id="munit-metric" class="px-3 py-1 text-sm rounded-md border border-line text-ink-muted" data-unit="metric">Meters</button>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="marea-l" class="block text-sm font-medium text-ink mb-2">Length (<span class="munit-label">ft</span>)</label>
+        <input type="number" id="marea-l" value="20" min="0" step="0.1" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+      <div>
+        <label for="marea-w" class="block text-sm font-medium text-ink mb-2">Width (<span class="munit-label">ft</span>)</label>
+        <input type="number" id="marea-w" value="10" min="0" step="0.1" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+    </div>
+
+    <div>
+      <label for="mdepth" class="block text-sm font-medium text-ink mb-2">Mulch depth (<span class="munit-depth">inches</span>)</label>
+      <input type="number" id="mdepth" value="3" min="0" step="0.5" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      <p class="text-xs text-ink-muted mt-1">2–3 inches is standard for most garden beds.</p>
+    </div>
+  </div>
+
+  <div class="mt-8 pt-8 border-t border-line">
+    <div class="bg-accent-soft rounded-xl p-6">
+      <p class="text-sm text-ink-muted mb-2">You'll need</p>
+      <p class="font-serif text-5xl text-ink mb-1">
+        <span id="mresult-yards">0</span>
+        <span class="text-2xl text-ink-muted">cubic yards</span>
+      </p>
+      <p class="text-sm text-ink-muted" id="mresult-sub">Enter dimensions to calculate</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const mL = document.getElementById('marea-l') as HTMLInputElement;
+  const mW = document.getElementById('marea-w') as HTMLInputElement;
+  const mDepth = document.getElementById('mdepth') as HTMLInputElement;
+  const yardsOut = document.getElementById('mresult-yards');
+  const mSub = document.getElementById('mresult-sub');
+  const mImp = document.getElementById('munit-imperial');
+  const mMet = document.getElementById('munit-metric');
+  const mLabels = document.querySelectorAll('.munit-label');
+  const mDepthLabel = document.querySelector('.munit-depth');
+
+  let mUnit: 'imperial' | 'metric' = 'imperial';
+
+  function mCalc() {
+    const L = parseFloat(mL.value) || 0;
+    const W = parseFloat(mW.value) || 0;
+    const depth = parseFloat(mDepth.value) || 0;
+
+    let cubicYards, cubicMeters, bags;
+
+    if (mUnit === 'imperial') {
+      // L, W in ft; depth in inches
+      const depthFt = depth / 12;
+      const cubicFeet = L * W * depthFt;
+      cubicYards = cubicFeet / 27;
+      cubicMeters = cubicYards * 0.764555;
+      // 2 cubic feet bags
+      bags = Math.ceil(cubicFeet / 2);
+    } else {
+      // L, W in m; depth in cm
+      const depthM = depth / 100;
+      cubicMeters = L * W * depthM;
+      cubicYards = cubicMeters * 1.30795;
+      const cubicFeet = cubicMeters * 35.3147;
+      bags = Math.ceil(cubicFeet / 2);
+    }
+
+    if (L > 0 && W > 0 && depth > 0) {
+      yardsOut!.textContent = (Math.ceil(cubicYards * 100) / 100).toString();
+      mSub!.textContent =
+        `≈ ${(Math.ceil(cubicMeters * 100) / 100)} m³ · about ${bags} bags (2 cu ft each)`;
+    } else {
+      yardsOut!.textContent = '0';
+      mSub!.textContent = 'Enter dimensions to calculate';
+    }
+  }
+
+  function mSetUnit(u: 'imperial' | 'metric') {
+    mUnit = u;
+    const imp = u === 'imperial';
+    mImp!.className = imp
+      ? 'px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink'
+      : 'px-3 py-1 text-sm rounded-md border border-line text-ink-muted';
+    mMet!.className = !imp
+      ? 'px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink'
+      : 'px-3 py-1 text-sm rounded-md border border-line text-ink-muted';
+    mLabels.forEach((l) => { l.textContent = imp ? 'ft' : 'm'; });
+    if (mDepthLabel) mDepthLabel.textContent = imp ? 'inches' : 'cm';
+    // sinnvolle Default-Tiefe beim Wechsel
+    mDepth.value = imp ? '3' : '8';
+    mCalc();
+  }
+
+  mImp?.addEventListener('click', () => mSetUnit('imperial'));
+  mMet?.addEventListener('click', () => mSetUnit('metric'));
+  [mL, mW, mDepth].forEach((el) => {
+    el?.addEventListener('input', mCalc);
+    el?.addEventListener('change', mCalc);
+  });
+  mCalc();
+</script>
