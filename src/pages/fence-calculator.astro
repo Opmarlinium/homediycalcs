@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FenceCalculator from '../components/FenceCalculator.astro';
+---
+
+<BaseLayout 
+  title="Fence Calculator — Posts, Panels & Materials | HomeDIYCalcs"
+  description="Free fence calculator. Estimate how many posts, sections, and panels you need for a fence based on total length and post spacing."
+>
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="mb-12 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl text-ink mb-4">Fence Calculator</h1>
+      <p class="text-lg text-ink-muted max-w-2xl mx-auto">
+        Estimate the posts, sections, and panels for your fence. Enter the total length, your post spacing, and how many gates you need.
+      </p>
+    </div>
+
+    <FenceCalculator />
+
+    <div class="mt-16 max-w-2xl mx-auto">
+      <h2 class="font-serif text-2xl text-ink mb-4">How to calculate fence materials</h2>
+      <ol class="list-decimal list-inside text-ink space-y-2 mb-8">
+        <li>Measure the total length of the fence line in feet.</li>
+        <li>Divide by your post spacing (8 ft is standard) to get the number of sections.</li>
+        <li>The number of posts is sections plus one, since a straight run needs a post at both ends.</li>
+        <li>Add one extra post per gate, and multiply sections by panels-per-section for total panels.</li>
+      </ol>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">How far apart should fence posts be?</h2>
+      <p class="text-ink-muted mb-8">
+        8 feet is the most common spacing for wood and vinyl fences — it balances strength with the number of posts. Some heavy-duty or windy installations use 6 ft for extra stability. Pre-built panels are usually 6 or 8 ft wide, so match your spacing to the panel width you buy.
+      </p>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">Frequently asked questions</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-medium text-ink mb-2">How many posts for a 100 ft fence?</h3>
+          <p class="text-ink-muted">At 8 ft spacing, a 100 ft fence has about 13 sections, so you need around 14 posts for a straight run, plus one extra per gate.</p>
+        </div>
+        <div>
+          <h3 class="font-medium text-ink mb-2">Does this account for corners?</h3>
+          <p class="text-ink-muted">This estimates a straight run. Each corner adds a post, so add one post per corner to your total. Corners also need bracing for stability.</p>
+        </div>
+        <div>
+          <h3 class="font-medium text-ink mb-2">What about concrete for the posts?</h3>
+          <p class="text-ink-muted">Most posts are set in concrete. As a rough guide, plan one to two 60 lb bags of concrete per post, depending on post size and hole depth. Use our concrete calculator to estimate the total.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-line">
+        <h2 class="font-serif text-2xl text-ink mb-4">More calculators</h2>
+        <ul class="space-y-2">
+          <li><a href="/concrete-calculator" style="color: var(--color-accent);" class="hover:underline">Concrete calculator (for post footings)</a></li>
+          <li><a href="/gravel-calculator" style="color: var(--color-accent);" class="hover:underline">Gravel calculator</a></li>
+          <li><a href="/tile-calculator" style="color: var(--color-accent);" class="hover:underline">Tile calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
