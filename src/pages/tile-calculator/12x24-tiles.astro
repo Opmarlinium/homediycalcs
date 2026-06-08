@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TileCalculator from '../../components/TileCalculator.astro';
+---
+
+<BaseLayout 
+  title="12x24 Tile Calculator — How Many Do You Need? | HomeDIYCalcs"
+  description="Calculate how many 12x24 inch tiles you need for any floor or wall. Free calculator plus a chart for common areas, including waste."
+>
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="mb-12 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl text-ink mb-4">
+        12×24 Tile Calculator
+      </h1>
+      <p class="text-lg text-ink-muted max-w-2xl mx-auto">
+        A 12×24 inch tile covers 2 square feet. Enter your area below to get an exact count, including waste, or use the quick-reference chart.
+      </p>
+    </div>
+
+    <TileCalculator defaultLength={10} defaultWidth={10} defaultTileSize="12x24" />
+
+    <div class="mt-16 max-w-2xl mx-auto">
+      <h2 class="font-serif text-2xl text-ink mb-4">How many 12×24 tiles per square foot?</h2>
+      <p class="text-ink-muted mb-8">
+        Each 12×24 inch tile covers exactly 2 square feet (288 square inches ÷ 144). That means you need half a tile per square foot, or 0.5 tiles/sq ft. Large format tiles like these cover area fast and leave fewer grout lines, which is why they're popular for modern floors.
+      </p>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">How many 12×24 tiles for common areas</h2>
+      <p class="text-ink-muted mb-4">
+        With 10% waste added. Many installers use 15% for large format tiles because they crack more easily when cut — that column is included too.
+      </p>
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-line-strong">
+              <th class="py-2 pr-4 text-ink font-medium">Area</th>
+              <th class="py-2 pr-4 text-ink font-medium">Tiles (10% waste)</th>
+              <th class="py-2 text-ink font-medium">Tiles (15% waste)</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-muted">
+            <tr class="border-b border-line"><td class="py-2 pr-4">50 sq ft</td><td class="py-2 pr-4">28 tiles</td><td class="py-2">29 tiles</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">100 sq ft</td><td class="py-2 pr-4">55 tiles</td><td class="py-2">58 tiles</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">150 sq ft</td><td class="py-2 pr-4">83 tiles</td><td class="py-2">87 tiles</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">200 sq ft</td><td class="py-2 pr-4">110 tiles</td><td class="py-2">115 tiles</td></tr>
+            <tr><td class="py-2 pr-4">300 sq ft</td><td class="py-2 pr-4">165 tiles</td><td class="py-2">173 tiles</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">How many 12×24 tiles for 100 square feet?</h2>
+      <p class="text-ink-muted mb-8">
+        For 100 square feet, you need 50 tiles for exact coverage (100 ÷ 2). Adding the standard 10% waste brings it to 55 tiles. If you're laying them in a diagonal or offset pattern, use 15% waste, which works out to 58 tiles.
+      </p>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">Tips for laying 12×24 tiles</h2>
+      <ul class="list-disc list-inside text-ink space-y-2 mb-8">
+        <li>Large format tiles need a very flat subfloor. Uneven floors cause lippage (edges sticking up).</li>
+        <li>Use a maximum 33% offset for brick-pattern layouts. A 50% offset on long tiles often causes lippage.</li>
+        <li>Buy 15% extra — long tiles break more easily during cutting than small ones.</li>
+        <li>Use a larger trowel for proper mortar coverage under big tiles.</li>
+      </ul>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">Frequently asked questions</h2>
+      
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-medium text-ink mb-2">How many square feet does a 12×24 tile cover?</h3>
+          <p class="text-ink-muted">Each 12×24 inch tile covers exactly 2 square feet. So 10 tiles cover 20 square feet, and 50 tiles cover 100 square feet before waste.</p>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-ink mb-2">How many 12×24 tiles come in a box?</h3>
+          <p class="text-ink-muted">It varies by brand, but most boxes contain 6 to 8 tiles, covering roughly 12–16 square feet per box. Check the box label for exact coverage and divide your total tile count by tiles-per-box to know how many boxes to buy.</p>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-ink mb-2">Why use more waste for 12×24 tiles?</h3>
+          <p class="text-ink-muted">Long tiles are more fragile during cutting and more likely to crack. They also produce more offcuts at room edges. 15% waste is a safer buffer than the standard 10% for small tiles.</p>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-ink mb-2">Can I use 12×24 tiles on walls?</h3>
+          <p class="text-ink-muted">Yes. They're popular for shower walls and modern backsplashes because of the clean, large-panel look. The calculation is identical — measure the wall area and divide by 2 square feet per tile.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-line">
+        <h2 class="font-serif text-2xl text-ink mb-4">Related calculators</h2>
+        <ul class="space-y-2">
+          <li><a href="/how-many-tiles-do-i-need" style="color: var(--color-accent);" class="hover:underline">How many tiles do I need? (full guide)</a></li>
+          <li><a href="/tile-calculator/bathroom-floor" style="color: var(--color-accent);" class="hover:underline">Tile calculator for bathroom floors</a></li>
+          <li><a href="/tile-calculator/kitchen-backsplash" style="color: var(--color-accent);" class="hover:underline">Kitchen backsplash tile calculator</a></li>
+          <li><a href="/tile-calculator" style="color: var(--color-accent);" class="hover:underline">Main tile calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
