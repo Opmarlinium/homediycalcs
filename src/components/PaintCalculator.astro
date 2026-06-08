@@ -1,0 +1,137 @@
+---
+// Paint Calculator — Wandfläche aus Raummassen, minus Türen/Fenster, mal Anstriche
+---
+
+<div class="bg-white rounded-2xl border border-line p-8 max-w-2xl mx-auto shadow-sm">
+  <h2 class="font-serif text-3xl text-ink mb-2">Paint Calculator</h2>
+  <p class="text-ink-muted mb-8">
+    Estimate how much paint you need for a room, including coats and openings.
+  </p>
+
+  <div class="space-y-6">
+    <div class="flex items-center gap-2">
+      <span class="text-sm text-ink-muted">Units:</span>
+      <button id="punit-imperial" class="px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink" data-unit="imperial">Feet</button>
+      <button id="punit-metric" class="px-3 py-1 text-sm rounded-md border border-line text-ink-muted" data-unit="metric">Meters</button>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="proom-l" class="block text-sm font-medium text-ink mb-2">Room length (<span class="punit-label">ft</span>)</label>
+        <input type="number" id="proom-l" value="12" min="0" step="0.1" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+      <div>
+        <label for="proom-w" class="block text-sm font-medium text-ink mb-2">Room width (<span class="punit-label">ft</span>)</label>
+        <input type="number" id="proom-w" value="12" min="0" step="0.1" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="pwall-h" class="block text-sm font-medium text-ink mb-2">Wall height (<span class="punit-label">ft</span>)</label>
+        <input type="number" id="pwall-h" value="8" min="0" step="0.1" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+      <div>
+        <label for="pcoats" class="block text-sm font-medium text-ink mb-2">Number of coats</label>
+        <input type="number" id="pcoats" value="2" min="1" max="5" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="pdoors" class="block text-sm font-medium text-ink mb-2">Doors</label>
+        <input type="number" id="pdoors" value="1" min="0" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+      <div>
+        <label for="pwindows" class="block text-sm font-medium text-ink mb-2">Windows</label>
+        <input type="number" id="pwindows" value="2" min="0" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 pt-8 border-t border-line">
+    <div class="bg-accent-soft rounded-xl p-6">
+      <p class="text-sm text-ink-muted mb-2">You'll need about</p>
+      <p class="font-serif text-5xl text-ink mb-1">
+        <span id="presult-gal">0</span>
+        <span class="text-2xl text-ink-muted">gallons</span>
+      </p>
+      <p class="text-sm text-ink-muted" id="presult-sub">Enter dimensions to calculate</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const pL = document.getElementById('proom-l') as HTMLInputElement;
+  const pW = document.getElementById('proom-w') as HTMLInputElement;
+  const pH = document.getElementById('pwall-h') as HTMLInputElement;
+  const pC = document.getElementById('pcoats') as HTMLInputElement;
+  const pD = document.getElementById('pdoors') as HTMLInputElement;
+  const pWin = document.getElementById('pwindows') as HTMLInputElement;
+  const galOut = document.getElementById('presult-gal');
+  const subOut = document.getElementById('presult-sub');
+  const pImp = document.getElementById('punit-imperial');
+  const pMet = document.getElementById('punit-metric');
+  const pLabels = document.querySelectorAll('.punit-label');
+
+  let pUnit: 'imperial' | 'metric' = 'imperial';
+  const COVER_SQFT_PER_GAL = 350; // 1 Gallone ~350 sq ft pro Anstrich
+
+  function pCalc() {
+    const L = parseFloat(pL.value) || 0;
+    const W = parseFloat(pW.value) || 0;
+    const H = parseFloat(pH.value) || 0;
+    const coats = parseFloat(pC.value) || 1;
+    const doors = parseFloat(pD.value) || 0;
+    const windows = parseFloat(pWin.value) || 0;
+
+    let wallArea, deduct, paintable, canonicalSqft, areaLabel;
+
+    if (pUnit === 'imperial') {
+      wallArea = 2 * (L + W) * H;            // sq ft
+      deduct = doors * 20 + windows * 15;    // sq ft
+      paintable = Math.max(0, wallArea - deduct);
+      canonicalSqft = paintable;
+      areaLabel = `${paintable.toFixed(0)} sq ft`;
+    } else {
+      wallArea = 2 * (L + W) * H;            // m²
+      deduct = doors * 1.85 + windows * 1.4; // m²
+      paintable = Math.max(0, wallArea - deduct);
+      canonicalSqft = paintable * 10.7639;
+      areaLabel = `${paintable.toFixed(1)} m²`;
+    }
+
+    const gallons = (canonicalSqft * coats) / COVER_SQFT_PER_GAL;
+    const liters = gallons * 3.78541;
+
+    if (L > 0 && W > 0 && H > 0) {
+      galOut!.textContent = (Math.ceil(gallons * 10) / 10).toString();
+      subOut!.textContent =
+        `≈ ${(Math.ceil(liters * 10) / 10)} L · ${areaLabel} of wall, ${coats} coat${coats > 1 ? 's' : ''}`;
+    } else {
+      galOut!.textContent = '0';
+      subOut!.textContent = 'Enter dimensions to calculate';
+    }
+  }
+
+  function pSetUnit(u: 'imperial' | 'metric') {
+    pUnit = u;
+    const imp = u === 'imperial';
+    pImp!.className = imp
+      ? 'px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink'
+      : 'px-3 py-1 text-sm rounded-md border border-line text-ink-muted';
+    pMet!.className = !imp
+      ? 'px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink'
+      : 'px-3 py-1 text-sm rounded-md border border-line text-ink-muted';
+    pLabels.forEach((l) => { l.textContent = imp ? 'ft' : 'm'; });
+    pCalc();
+  }
+
+  pImp?.addEventListener('click', () => pSetUnit('imperial'));
+  pMet?.addEventListener('click', () => pSetUnit('metric'));
+  [pL, pW, pH, pC, pD, pWin].forEach((el) => {
+    el?.addEventListener('input', pCalc);
+    el?.addEventListener('change', pCalc);
+  });
+  pCalc();
+</script>
