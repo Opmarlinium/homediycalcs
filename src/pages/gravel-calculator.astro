@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GravelCalculator from '../components/GravelCalculator.astro';
+---
+
+<BaseLayout 
+  title="Gravel Calculator — Cubic Yards & Tons | HomeDIYCalcs"
+  description="Free gravel calculator. Work out how many cubic yards or tons of gravel you need for a driveway, path, or drainage, based on area and depth."
+>
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="mb-12 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl text-ink mb-4">Gravel Calculator</h1>
+      <p class="text-lg text-ink-muted max-w-2xl mx-auto">
+        Calculate how much gravel you need in cubic yards and tons for a driveway, garden path, or drainage project.
+      </p>
+    </div>
+
+    <GravelCalculator />
+
+    <div class="mt-16 max-w-2xl mx-auto">
+      <h2 class="font-serif text-2xl text-ink mb-4">How to calculate gravel</h2>
+      <ol class="list-decimal list-inside text-ink space-y-2 mb-8">
+        <li>Measure the length and width of the area in feet.</li>
+        <li>Choose a depth — 2–3 inches for paths, 4+ inches for driveways.</li>
+        <li>Volume = length × width × depth (in feet), divided by 27 for cubic yards.</li>
+        <li>Multiply volume by the gravel's density to get weight in tons.</li>
+      </ol>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">How much does a yard of gravel weigh?</h2>
+      <p class="text-ink-muted mb-8">
+        Most gravel weighs roughly 1.4 tons per cubic yard, though it varies by stone type and moisture. Suppliers often sell gravel by the ton rather than by volume, so it helps to know both numbers. This calculator gives you cubic yards and an estimated weight in tons so you can order in whichever unit your supplier uses.
+      </p>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">Frequently asked questions</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-medium text-ink mb-2">How deep should gravel be for a driveway?</h3>
+          <p class="text-ink-muted">A gravel driveway usually needs 4–6 inches total, often in layers — a coarse base layer topped with finer gravel. For walking paths, 2–3 inches over landscape fabric is enough.</p>
+        </div>
+        <div>
+          <h3 class="font-medium text-ink mb-2">Is gravel sold by weight or volume?</h3>
+          <p class="text-ink-muted">Both. Bulk suppliers often price by the ton, while some sell by the cubic yard. Knowing both figures lets you compare prices and order the right amount regardless of how it's listed.</p>
+        </div>
+        <div>
+          <h3 class="font-medium text-ink mb-2">Should I add extra for compaction?</h3>
+          <p class="text-ink-muted">Yes — gravel settles and compacts, especially on driveways. Ordering about 10% extra is sensible, and you'll want a bit spare to top up low spots later.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-line">
+        <h2 class="font-serif text-2xl text-ink mb-4">More calculators</h2>
+        <ul class="space-y-2">
+          <li><a href="/mulch-calculator" style="color: var(--color-accent);" class="hover:underline">Mulch calculator</a></li>
+          <li><a href="/concrete-calculator" style="color: var(--color-accent);" class="hover:underline">Concrete calculator</a></li>
+          <li><a href="/tile-calculator" style="color: var(--color-accent);" class="hover:underline">Tile calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

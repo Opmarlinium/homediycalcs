@@ -1,0 +1,117 @@
+---
+// Gravel Calculator — Fläche × Tiefe → cubic yards + Tonnen
+---
+
+<div class="bg-white rounded-2xl border border-line p-8 max-w-2xl mx-auto shadow-sm">
+  <h2 class="font-serif text-3xl text-ink mb-2">Gravel Calculator</h2>
+  <p class="text-ink-muted mb-8">
+    Calculate cubic yards and tons of gravel for a driveway, path, or drainage.
+  </p>
+
+  <div class="space-y-6">
+    <div class="flex items-center gap-2">
+      <span class="text-sm text-ink-muted">Units:</span>
+      <button id="gunit-imperial" class="px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink" data-unit="imperial">Feet</button>
+      <button id="gunit-metric" class="px-3 py-1 text-sm rounded-md border border-line text-ink-muted" data-unit="metric">Meters</button>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="garea-l" class="block text-sm font-medium text-ink mb-2">Length (<span class="gunit-label">ft</span>)</label>
+        <input type="number" id="garea-l" value="30" min="0" step="0.1" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+      <div>
+        <label for="garea-w" class="block text-sm font-medium text-ink mb-2">Width (<span class="gunit-label">ft</span>)</label>
+        <input type="number" id="garea-w" value="10" min="0" step="0.1" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+    </div>
+
+    <div>
+      <label for="gdepth" class="block text-sm font-medium text-ink mb-2">Gravel depth (<span class="gunit-depth">inches</span>)</label>
+      <input type="number" id="gdepth" value="3" min="0" step="0.5" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      <p class="text-xs text-ink-muted mt-1">2–3 inches for paths, 4+ inches for driveways.</p>
+    </div>
+  </div>
+
+  <div class="mt-8 pt-8 border-t border-line">
+    <div class="bg-accent-soft rounded-xl p-6">
+      <p class="text-sm text-ink-muted mb-2">You'll need</p>
+      <p class="font-serif text-5xl text-ink mb-1">
+        <span id="gresult-yards">0</span>
+        <span class="text-2xl text-ink-muted">cubic yards</span>
+      </p>
+      <p class="text-sm text-ink-muted" id="gresult-sub">Enter dimensions to calculate</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const gL = document.getElementById('garea-l') as HTMLInputElement;
+  const gW = document.getElementById('garea-w') as HTMLInputElement;
+  const gDepth = document.getElementById('gdepth') as HTMLInputElement;
+  const gYards = document.getElementById('gresult-yards');
+  const gSub = document.getElementById('gresult-sub');
+  const gImp = document.getElementById('gunit-imperial');
+  const gMet = document.getElementById('gunit-metric');
+  const gLabels = document.querySelectorAll('.gunit-label');
+  const gDepthLabel = document.querySelector('.gunit-depth');
+
+  let gUnit: 'imperial' | 'metric' = 'imperial';
+
+  // Schotter wiegt ~1.4 metrische Tonnen pro m³ (typisch für Kies/Schotter)
+  const TONNES_PER_M3 = 1.4;
+
+  function gCalc() {
+    const L = parseFloat(gL.value) || 0;
+    const W = parseFloat(gW.value) || 0;
+    const depth = parseFloat(gDepth.value) || 0;
+
+    let cubicYards, cubicMeters;
+
+    if (gUnit === 'imperial') {
+      const depthFt = depth / 12;
+      const cubicFeet = L * W * depthFt;
+      cubicYards = cubicFeet / 27;
+      cubicMeters = cubicYards * 0.764555;
+    } else {
+      const depthM = depth / 100;
+      cubicMeters = L * W * depthM;
+      cubicYards = cubicMeters * 1.30795;
+    }
+
+    const tonnes = cubicMeters * TONNES_PER_M3;
+    const usTons = tonnes * 1.10231;
+
+    if (L > 0 && W > 0 && depth > 0) {
+      gYards!.textContent = (Math.ceil(cubicYards * 100) / 100).toString();
+      gSub!.textContent =
+        `≈ ${(Math.ceil(cubicMeters * 100) / 100)} m³ · about ${(Math.ceil(usTons * 10) / 10)} tons (${(Math.ceil(tonnes * 10) / 10)} t)`;
+    } else {
+      gYards!.textContent = '0';
+      gSub!.textContent = 'Enter dimensions to calculate';
+    }
+  }
+
+  function gSetUnit(u: 'imperial' | 'metric') {
+    gUnit = u;
+    const imp = u === 'imperial';
+    gImp!.className = imp
+      ? 'px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink'
+      : 'px-3 py-1 text-sm rounded-md border border-line text-ink-muted';
+    gMet!.className = !imp
+      ? 'px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink'
+      : 'px-3 py-1 text-sm rounded-md border border-line text-ink-muted';
+    gLabels.forEach((l) => { l.textContent = imp ? 'ft' : 'm'; });
+    if (gDepthLabel) gDepthLabel.textContent = imp ? 'inches' : 'cm';
+    gDepth.value = imp ? '3' : '8';
+    gCalc();
+  }
+
+  gImp?.addEventListener('click', () => gSetUnit('imperial'));
+  gMet?.addEventListener('click', () => gSetUnit('metric'));
+  [gL, gW, gDepth].forEach((el) => {
+    el?.addEventListener('input', gCalc);
+    el?.addEventListener('change', gCalc);
+  });
+  gCalc();
+</script>
