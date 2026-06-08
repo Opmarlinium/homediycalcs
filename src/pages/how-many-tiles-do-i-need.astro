@@ -4,8 +4,8 @@ import TileCalculator from '../components/TileCalculator.astro';
 ---
 
 <BaseLayout 
-  title="How Many Tiles Do I Need? Free Calculator | HomeDIYCalcs"
-  description="Use this free calculator to find out exactly how many tiles you need for any project. Just enter dimensions and tile size."
+  title="How Many Tiles Do I Need? Free Tile Calculator | HomeDIYCalcs"
+  description="Find out exactly how many tiles you need for any project. Free calculator plus charts for common room sizes and tile dimensions, including waste."
 >
   <section class="max-w-6xl mx-auto px-6 py-16">
     <div class="mb-12 text-center">
@@ -13,7 +13,7 @@ import TileCalculator from '../components/TileCalculator.astro';
         How many tiles do I need?
       </h1>
       <p class="text-lg text-ink-muted max-w-2xl mx-auto">
-        The short answer: divide the total area by the size of one tile, then add 10% for waste. Use the calculator below for an exact number.
+        The short answer: measure your area, divide by the size of one tile, then add 10% for waste. Use the calculator below for an exact number, or check the charts further down.
       </p>
     </div>
 
@@ -30,20 +30,67 @@ import TileCalculator from '../components/TileCalculator.astro';
         <li>Round up to whole tiles or boxes.</li>
       </ol>
 
-      <h2 class="font-serif text-2xl text-ink mb-4">Common tile counts at a glance</h2>
+      <h2 class="font-serif text-2xl text-ink mb-4">How many tiles per square foot?</h2>
       <p class="text-ink-muted mb-4">
-        For 12×12 inch tiles with 10% waste:
+        This depends entirely on tile size. Here's how many tiles cover one square foot for common sizes:
       </p>
-      <ul class="list-disc list-inside text-ink-muted space-y-1 mb-8">
-        <li>50 sq ft area: about 55 tiles</li>
-        <li>100 sq ft area: about 110 tiles</li>
-        <li>200 sq ft area: about 220 tiles</li>
-        <li>500 sq ft area: about 550 tiles</li>
-      </ul>
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-line-strong">
+              <th class="py-2 pr-4 text-ink font-medium">Tile size</th>
+              <th class="py-2 pr-4 text-ink font-medium">Tiles per sq ft</th>
+              <th class="py-2 text-ink font-medium">Sq ft per tile</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-muted">
+            <tr class="border-b border-line"><td class="py-2 pr-4">4 × 4 inch</td><td class="py-2 pr-4">9</td><td class="py-2">0.11</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">6 × 6 inch</td><td class="py-2 pr-4">4</td><td class="py-2">0.25</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">12 × 12 inch</td><td class="py-2 pr-4">1</td><td class="py-2">1.00</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">12 × 24 inch</td><td class="py-2 pr-4">0.5</td><td class="py-2">2.00</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">18 × 18 inch</td><td class="py-2 pr-4">0.44</td><td class="py-2">2.25</td></tr>
+            <tr><td class="py-2 pr-4">24 × 24 inch</td><td class="py-2 pr-4">0.25</td><td class="py-2">4.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">Tiles needed for common room sizes</h2>
+      <p class="text-ink-muted mb-4">
+        Using 12×12 inch tiles with 10% waste added. Round up to full boxes when buying.
+      </p>
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-line-strong">
+              <th class="py-2 pr-4 text-ink font-medium">Area</th>
+              <th class="py-2 pr-4 text-ink font-medium">Square feet</th>
+              <th class="py-2 text-ink font-medium">Tiles (with 10% waste)</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-muted">
+            <tr class="border-b border-line"><td class="py-2 pr-4">Small bathroom</td><td class="py-2 pr-4">40 sq ft</td><td class="py-2">44 tiles</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">Standard bathroom</td><td class="py-2 pr-4">50 sq ft</td><td class="py-2">55 tiles</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">Small kitchen</td><td class="py-2 pr-4">100 sq ft</td><td class="py-2">110 tiles</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">Average room</td><td class="py-2 pr-4">200 sq ft</td><td class="py-2">220 tiles</td></tr>
+            <tr class="border-b border-line"><td class="py-2 pr-4">Large room</td><td class="py-2 pr-4">300 sq ft</td><td class="py-2">330 tiles</td></tr>
+            <tr><td class="py-2 pr-4">Open floor area</td><td class="py-2 pr-4">500 sq ft</td><td class="py-2">550 tiles</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">How many 12×24 tiles for 100 square feet?</h2>
+      <p class="text-ink-muted mb-8">
+        A 12×24 inch tile covers 2 square feet. For 100 square feet, you need 50 tiles for exact coverage. Adding 10% waste brings it to 55 tiles. For larger format tiles like 12×24, many installers recommend 15% waste because longer tiles are more likely to break during cutting — that would be 58 tiles.
+      </p>
 
       <h2 class="font-serif text-2xl text-ink mb-4">Frequently asked questions</h2>
       
       <div class="space-y-6">
+        <div>
+          <h3 class="font-medium text-ink mb-2">How many tiles will I need for my floor?</h3>
+          <p class="text-ink-muted">Measure the floor's length and width in feet, multiply them for square footage, then divide by the coverage of your chosen tile. Always add 10–15% for waste. The calculator above does this automatically.</p>
+        </div>
+
         <div>
           <h3 class="font-medium text-ink mb-2">Why do I need extra tiles for waste?</h3>
           <p class="text-ink-muted">Tiles get cut around edges, walls, fixtures, and corners. Some tiles also break during cutting or have visible defects. The waste factor accounts for all of this.</p>
@@ -55,9 +102,28 @@ import TileCalculator from '../components/TileCalculator.astro';
         </div>
 
         <div>
+          <h3 class="font-medium text-ink mb-2">How do I calculate tiles for a wall instead of a floor?</h3>
+          <p class="text-ink-muted">The method is identical: measure the wall's height and width in feet, multiply for square footage, then divide by tile coverage. Walls often need more cuts around windows and outlets, so lean toward 15% waste.</p>
+        </div>
+
+        <div>
           <h3 class="font-medium text-ink mb-2">Should I buy extra for future repairs?</h3>
           <p class="text-ink-muted">Yes — buy 1–2 extra boxes beyond your calculation. Tile production runs change over years, and matching dye lots later is nearly impossible. Better to have a few spares stored.</p>
         </div>
+
+        <div>
+          <h3 class="font-medium text-ink mb-2">How many peel and stick tiles do I need?</h3>
+          <p class="text-ink-muted">The same formula applies. Measure your area, divide by the size of one peel-and-stick tile, and add 10% for waste. Most peel-and-stick tiles come in 12×12 inch sheets, so one sheet covers roughly one square foot.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-line">
+        <h2 class="font-serif text-2xl text-ink mb-4">Related calculators</h2>
+        <ul class="space-y-2">
+          <li><a href="/tile-calculator/bathroom-floor" style="color: var(--color-accent);" class="hover:underline">Tile calculator for bathroom floors</a></li>
+          <li><a href="/tile-calculator/kitchen-backsplash" style="color: var(--color-accent);" class="hover:underline">Tile calculator for kitchen backsplashes</a></li>
+          <li><a href="/tile-calculator" style="color: var(--color-accent);" class="hover:underline">Main tile calculator</a></li>
+        </ul>
       </div>
     </div>
   </section>
