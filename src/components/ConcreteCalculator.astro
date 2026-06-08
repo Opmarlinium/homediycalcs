@@ -1,0 +1,132 @@
+---
+// Concrete Calculator — Fläche × Dicke → cubic yards + Säcke (40/60/80 lb)
+---
+
+<div class="bg-white rounded-2xl border border-line p-8 max-w-2xl mx-auto shadow-sm">
+  <h2 class="font-serif text-3xl text-ink mb-2">Concrete Calculator</h2>
+  <p class="text-ink-muted mb-8">
+    Calculate cubic yards and the number of bags for a slab, pad, or footing.
+  </p>
+
+  <div class="space-y-6">
+    <div class="flex items-center gap-2">
+      <span class="text-sm text-ink-muted">Units:</span>
+      <button id="cunit-imperial" class="px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink" data-unit="imperial">Feet</button>
+      <button id="cunit-metric" class="px-3 py-1 text-sm rounded-md border border-line text-ink-muted" data-unit="metric">Meters</button>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="cslab-l" class="block text-sm font-medium text-ink mb-2">Length (<span class="cunit-label">ft</span>)</label>
+        <input type="number" id="cslab-l" value="10" min="0" step="0.1" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+      <div>
+        <label for="cslab-w" class="block text-sm font-medium text-ink mb-2">Width (<span class="cunit-label">ft</span>)</label>
+        <input type="number" id="cslab-w" value="10" min="0" step="0.1" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="cthick" class="block text-sm font-medium text-ink mb-2">Thickness (<span class="cunit-thick">inches</span>)</label>
+        <input type="number" id="cthick" value="4" min="0" step="0.5" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink" />
+        <p class="text-xs text-ink-muted mt-1">4 inches is typical for a patio or walkway slab.</p>
+      </div>
+      <div>
+        <label for="cbag" class="block text-sm font-medium text-ink mb-2">Bag size</label>
+        <select id="cbag" class="w-full px-4 py-2 border border-line-strong rounded-lg focus:outline-none focus:border-ink text-ink bg-white">
+          <option value="80">80 lb bag</option>
+          <option value="60">60 lb bag</option>
+          <option value="40">40 lb bag</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 pt-8 border-t border-line">
+    <div class="bg-accent-soft rounded-xl p-6">
+      <p class="text-sm text-ink-muted mb-2">You'll need</p>
+      <p class="font-serif text-5xl text-ink mb-1">
+        <span id="cresult-yards">0</span>
+        <span class="text-2xl text-ink-muted">cubic yards</span>
+      </p>
+      <p class="text-sm text-ink-muted" id="cresult-sub">Enter dimensions to calculate</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const cL = document.getElementById('cslab-l') as HTMLInputElement;
+  const cW = document.getElementById('cslab-w') as HTMLInputElement;
+  const cT = document.getElementById('cthick') as HTMLInputElement;
+  const cBag = document.getElementById('cbag') as HTMLSelectElement;
+  const cYards = document.getElementById('cresult-yards');
+  const cSub = document.getElementById('cresult-sub');
+  const cImp = document.getElementById('cunit-imperial');
+  const cMet = document.getElementById('cunit-metric');
+  const cLabels = document.querySelectorAll('.cunit-label');
+  const cThickLabel = document.querySelector('.cunit-thick');
+
+  let cUnit: 'imperial' | 'metric' = 'imperial';
+
+  // Yield: wieviele cubic feet eine Tüte ergibt (gemischter Beton)
+  const BAG_YIELD_CUFT: Record<string, number> = { '80': 0.6, '60': 0.45, '40': 0.3 };
+
+  function cCalc() {
+    const L = parseFloat(cL.value) || 0;
+    const W = parseFloat(cW.value) || 0;
+    const thick = parseFloat(cT.value) || 0;
+    const bag = cBag.value;
+
+    let cubicFeet, cubicYards, cubicMeters;
+
+    if (cUnit === 'imperial') {
+      const thickFt = thick / 12;
+      cubicFeet = L * W * thickFt;
+      cubicYards = cubicFeet / 27;
+      cubicMeters = cubicYards * 0.764555;
+    } else {
+      const thickM = thick / 100;
+      cubicMeters = L * W * thickM;
+      cubicYards = cubicMeters * 1.30795;
+      cubicFeet = cubicMeters * 35.3147;
+    }
+
+    // 5–10% Verschnitt einrechnen
+    const bagsRaw = cubicFeet / BAG_YIELD_CUFT[bag];
+    const bags = Math.ceil(bagsRaw * 1.05);
+
+    if (L > 0 && W > 0 && thick > 0) {
+      cYards!.textContent = (Math.ceil(cubicYards * 100) / 100).toString();
+      cSub!.textContent =
+        `≈ ${(Math.ceil(cubicMeters * 100) / 100)} m³ · about ${bags} bags (${bag} lb)`;
+    } else {
+      cYards!.textContent = '0';
+      cSub!.textContent = 'Enter dimensions to calculate';
+    }
+  }
+
+  function cSetUnit(u: 'imperial' | 'metric') {
+    cUnit = u;
+    const imp = u === 'imperial';
+    cImp!.className = imp
+      ? 'px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink'
+      : 'px-3 py-1 text-sm rounded-md border border-line text-ink-muted';
+    cMet!.className = !imp
+      ? 'px-3 py-1 text-sm rounded-md border border-line-strong bg-white text-ink'
+      : 'px-3 py-1 text-sm rounded-md border border-line text-ink-muted';
+    cLabels.forEach((l) => { l.textContent = imp ? 'ft' : 'm'; });
+    if (cThickLabel) cThickLabel.textContent = imp ? 'inches' : 'cm';
+    cT.value = imp ? '4' : '10';
+    cCalc();
+  }
+
+  cImp?.addEventListener('click', () => cSetUnit('imperial'));
+  cMet?.addEventListener('click', () => cSetUnit('metric'));
+  [cL, cW, cT].forEach((el) => {
+    el?.addEventListener('input', cCalc);
+    el?.addEventListener('change', cCalc);
+  });
+  cBag?.addEventListener('change', cCalc);
+  cCalc();
+</script>

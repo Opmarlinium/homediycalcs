@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ConcreteCalculator from '../components/ConcreteCalculator.astro';
+---
+
+<BaseLayout 
+  title="Concrete Calculator — Cubic Yards & Bags | HomeDIYCalcs"
+  description="Free concrete calculator. Work out how many cubic yards or bags of concrete you need for a slab, pad, or footing, based on area and thickness."
+>
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="mb-12 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl text-ink mb-4">Concrete Calculator</h1>
+      <p class="text-lg text-ink-muted max-w-2xl mx-auto">
+        Calculate the concrete you need for a slab, patio, or footing — in cubic yards and the number of bags.
+      </p>
+    </div>
+
+    <ConcreteCalculator />
+
+    <div class="mt-16 max-w-2xl mx-auto">
+      <h2 class="font-serif text-2xl text-ink mb-4">How to calculate concrete</h2>
+      <ol class="list-decimal list-inside text-ink space-y-2 mb-8">
+        <li>Measure the length and width of the slab in feet.</li>
+        <li>Choose a thickness — 4 inches is typical for patios and walkways.</li>
+        <li>Volume = length × width × thickness (in feet).</li>
+        <li>Divide by 27 for cubic yards, then convert to bags based on bag yield.</li>
+      </ol>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">How many bags of concrete in a cubic yard?</h2>
+      <p class="text-ink-muted mb-8">
+        It depends on bag size. An 80 lb bag yields about 0.6 cubic feet, so a cubic yard (27 cubic feet) takes about 45 of them. A 60 lb bag takes about 60 bags per yard, and a 40 lb bag about 90. For anything above roughly half a cubic yard, ready-mix delivery is usually easier and cheaper than mixing bags by hand.
+      </p>
+
+      <h2 class="font-serif text-2xl text-ink mb-4">Frequently asked questions</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-medium text-ink mb-2">How thick should a concrete slab be?</h3>
+          <p class="text-ink-muted">4 inches is standard for patios, walkways, and shed bases. Driveways and areas holding heavy vehicles usually need 5–6 inches with reinforcement. Always check local codes for structural work.</p>
+        </div>
+        <div>
+          <h3 class="font-medium text-ink mb-2">Should I order extra concrete?</h3>
+          <p class="text-ink-muted">Yes. This calculator adds about 5% for spillage and uneven subgrade. For ready-mix delivery, many people round up to the next quarter yard, since running short mid-pour is a serious problem.</p>
+        </div>
+        <div>
+          <h3 class="font-medium text-ink mb-2">Bags or ready-mix?</h3>
+          <p class="text-ink-muted">Bags suit small jobs like post footings or a small pad. For larger slabs, mixing dozens of bags by hand is exhausting and inconsistent — ready-mix delivered by truck is the practical choice.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-line">
+        <h2 class="font-serif text-2xl text-ink mb-4">More calculators</h2>
+        <ul class="space-y-2">
+          <li><a href="/tile-calculator" style="color: var(--color-accent);" class="hover:underline">Tile calculator</a></li>
+          <li><a href="/mulch-calculator" style="color: var(--color-accent);" class="hover:underline">Mulch calculator</a></li>
+          <li><a href="/paint-calculator" style="color: var(--color-accent);" class="hover:underline">Paint calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
